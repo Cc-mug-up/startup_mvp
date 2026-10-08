@@ -1,0 +1,25 @@
+{
+  "financials": {
+    "initial_capital": 100.0,
+    "current_cash": 100.0,
+    "total_revenue": 0.0,
+    "total_hard_cost": 0.0,
+    "cost_breakdown": {
+      "llm_decision": 0.0,
+      "tool_execution": 0.0,
+      "infrastructure": 0.0
+    }
+  },
+  "runtime_guards": {
+    "system_status": "ACTIVE",
+    "current_time": "2026-10-01T00:00:00Z",
+    "consecutive_internal_steps": 0,
+    "consecutive_invalid_steps": 0,
+    "max_internal_steps": 10,
+    "max_invalid_steps": 3,
+    "pending_external_event": null
+  },
+  "opportunity_memory": {},
+  "transaction_ledger": [],
+  "settled_event_refs": []
+}

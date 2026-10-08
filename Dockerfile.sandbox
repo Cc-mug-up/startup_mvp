@@ -1,0 +1,23 @@
+FROM python:3.10-slim
+
+# 安装最小化必需工具链（apt 源切至阿里云镜像，规避国际线路吞吐瓶颈）
+RUN sed -i 's/deb.debian.org/mirrors.aliyun.com/g' /etc/apt/sources.list.d/debian.sources 2>/dev/null || \
+    sed -i 's/deb.debian.org/mirrors.aliyun.com/g' /etc/apt/sources.list 2>/dev/null; \
+    apt-get update && apt-get install -y --no-install-recommends \
+    curl \
+    git \
+    jq \
+    build-essential \
+    && rm -rf /var/lib/apt/lists/*
+
+# 容器内验收测试运行器（阿里云 PyPI 源，规避国际线路）
+RUN pip install --no-cache-dir -i https://mirrors.aliyun.com/pypi/simple/ pytest
+
+# 创建非特权隔离用户
+RUN useradd -m -u 1000 -s /bin/bash sandbox_user
+
+# 设定物理工作区
+WORKDIR /workspace
+RUN chown -R sandbox_user:sandbox_user /workspace
+
+USER sandbox_user

@@ -1,0 +1,38 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "opportunity_id": {
+      "type": "string",
+      "pattern": "^opp_[a-zA-Z0-9_-]+$"
+    },
+    "action_type": {
+      "type": "string",
+      "enum": ["INTERNAL", "EXTERNAL", "ABANDON", "WAIT"]
+    },
+    "tool_name": {
+      "type": "string",
+      "enum": [
+        "discover_opportunities",
+        "search",
+        "fetch_page",
+        "read_file",
+        "write_file",
+        "shell",
+        "send_email",
+        "submit_pr",
+        "create_payment_link",
+        "none"
+      ]
+    },
+    "tool_args": {
+      "type": "object"
+    },
+    "justification": {
+      "type": "string",
+      "maxLength": 120
+    }
+  },
+  "required": ["opportunity_id", "action_type", "tool_name", "tool_args", "justification"],
+  "additionalProperties": false
+}
